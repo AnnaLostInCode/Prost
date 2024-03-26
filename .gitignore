@@ -1,0 +1,9 @@
+bin
+target
+.metadata
+.settings
+.idea
+*.iml
+*.log
+*.lck
+config/application-local.properties

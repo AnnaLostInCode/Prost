@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (C) Schweizerische Bundesbahnen SBB, 2017.
+  -->
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+    <!-- Suppress MethodName rule for test code -->
+    <suppress checks="MethodName"
+              files="src[\\/]test-integration[\\/]java"/>
+    <suppress checks="MethodName"
+              files="src[\\/]test[\\/]java"/>
+    <suppress checks=""
+              files="src-gen"/>
+
+    <!-- Suppress AbbreviationAsWordInName rule for test code -->
+    <suppress checks="AbbreviationAsWordInName"
+              files="src[\\/]test-integration[\\/]java"/>
+    <suppress checks="AbbreviationAsWordInName"
+              files="src[\\/]test[\\/]java"/>
+
+</suppressions>

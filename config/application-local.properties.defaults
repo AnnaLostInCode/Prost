@@ -1,0 +1,20 @@
+# This file contains user-specific properties to build, test and run the application locally.
+
+# Instructions:
+#  1. Copy this file to application-local.properties in this directory (/config/)
+#  2. Set the properties to your desired values
+
+# NEVER change and commit this .defaults file!
+
+# Spring Boot will pick up the /config/application-local.properties file as a property source when the local profile is activated (default).
+# Properties set here will override the values from other .properties files.
+
+
+################
+# Customizable properties start here
+################
+
+
+# If no password decoding is necessary for local environment, this dummy password is enough.
+# To activate local decoding, insert correct password (from keypass database)
+jasypt.encryptor.password=dummy
