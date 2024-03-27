@@ -6,6 +6,7 @@ package ch.bch.config;
 
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.tags.Tag;
 import java.util.List;
 import org.springdoc.core.customizers.OpenApiCustomizer;
 import org.springdoc.core.models.GroupedOpenApi;
@@ -15,8 +16,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfiguration {
 
-    // TODO: replace with real tag:
-    //  public static final String INTERNAL_TAG_BETRIEBSPUNKT = "Betriebspunkt";
+    public static final String INTERNAL_TAG_PLAYER = "Player";
+    public static final String INTERNAL_TAG_TAG = "Tag";
+    public static final String INTERNAL_TAG_TASK = "Task";
+    public static final String INTERNAL_TAG_GAME = "Game";
 
     @Bean
     public GroupedOpenApi internalApi() {
@@ -32,7 +35,11 @@ public class SwaggerConfiguration {
                 .info(commonApiInfo()
                         .title("Prost API")
                         .description("Interne Schnittstellen für Prost API"))
-                .tags(List.of(// TODO: Add tag
+                .tags(List.of(
+                        new Tag().name(INTERNAL_TAG_GAME),
+                        new Tag().name(INTERNAL_TAG_PLAYER),
+                        new Tag().name(INTERNAL_TAG_TAG),
+                        new Tag().name(INTERNAL_TAG_TASK)
                 ));
     }
 

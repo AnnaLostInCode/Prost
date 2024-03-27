@@ -1,18 +1,20 @@
 package ch.bch.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.springframework.data.annotation.Id;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("tags")
-@Data
-@AllArgsConstructor
-public class Tag {
+@EqualsAndHashCode(callSuper = true)
+@Getter
+public class Tag extends MongoBase {
 
-    @Id
-    Long id;
-    String tag;
-    String description;
+    final String tag;
+    final String description;
 
+    public Tag(String id, String tag, String description) {
+        super(id);
+        this.tag = tag;
+        this.description = description;
+    }
 }

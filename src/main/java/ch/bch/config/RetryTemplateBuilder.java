@@ -14,7 +14,7 @@ public final class RetryTemplateBuilder {
     private static final String EXCEPTION_MUST_NOT_BE_NULL = "exception must not be null";
 
     private final RetryPolicyConfiguration retryPolicyConfig;
-    private Map<Class<? extends Throwable>, Boolean> exceptions = new HashMap<>();
+    private final Map<Class<? extends Throwable>, Boolean> exceptions = new HashMap<>();
     private RetryListener retryListener;
 
     public static RetryTemplateBuilder builder(RetryPolicyConfiguration retryPolicyConfig) {
@@ -39,7 +39,7 @@ public final class RetryTemplateBuilder {
      * Exception for which a retry should not be attempted. Subclasses and exception causes are included in checking.
      * Call multiple times to add different exceptions.
      * <p>
-     * By default exceptions are not retried. This method can be used to change behaviour for subclasses of exceptions set by {@link #retryFor(Class)}.
+     * By default, exceptions are not retried. This method can be used to change behaviour for subclasses of exceptions set by {@link #retryFor(Class)}.
      */
     public RetryTemplateBuilder dontRetryFor(Class<? extends Throwable> exception) {
         requireNonNull(exception, EXCEPTION_MUST_NOT_BE_NULL);

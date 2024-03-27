@@ -13,6 +13,6 @@ import java.lang.annotation.Target;
 @Target({METHOD, TYPE, ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-@ApiResponse(responseCode = "202", description = "Bei erfolgreichem Aufruf.")
+@ApiResponse(responseCode = "202", description = "When call successful")
 public @interface AcceptedApiResponse {
 }

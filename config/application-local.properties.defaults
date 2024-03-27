@@ -13,8 +13,3 @@
 ################
 # Customizable properties start here
 ################
-
-
-# If no password decoding is necessary for local environment, this dummy password is enough.
-# To activate local decoding, insert correct password (from keypass database)
-jasypt.encryptor.password=dummy
