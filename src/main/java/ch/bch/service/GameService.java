@@ -29,29 +29,38 @@ public class GameService {
     public ActiveTask nextTask(String gameId) {
         Optional<Game> optionalGame = gameRepo.findById(gameId);
         return optionalGame.map(game -> {
-            Task task = chooseTask(getValidTasks(game.getTagIds()));
+            Task task = chooseTask(getValidTasks(game.getLevel(), game.getTagIds()));
             List<Player> validPlayers = getValidPlayers(game.getPlayerIds(), task.getTagIds());
             ArrayList<Player> activePlayers = choosePlayers(task, new ArrayList<>(validPlayers));
             return new ActiveTask(task, activePlayers);
-        }).orElseThrow();
+        }).orElseThrow(() ->
+                new IllegalStateException("There is no Game with this id. Make sure you created a game with this id.")
+        );
     }
 
     Task chooseTask(List<Task> validTasks) {
+        if (validTasks.isEmpty()) {
+            throw new IllegalStateException("There are not enough valid tasks to choose from. Create at least one.");
+        }
         return random(validTasks);
     }
 
     ArrayList<Player> choosePlayers(Task task, ArrayList<Player> validPlayers) {
-        ArrayList<Player> activePlayers = new ArrayList<>();
-        for (int i = 0; i < task.getAmountPlayers(); i++) {
+        Long amountPlayers = task.getAmountPlayers();
+        if (validPlayers.size() < amountPlayers) {
+            throw new IllegalStateException("There are not enough valid players to choose from. Add at least " + amountPlayers);
+        }
+        ArrayList<Player> taskPlayers = new ArrayList<>();
+        for (int i = 0; i < amountPlayers; i++) {
             Player randomPlayer = random(validPlayers);
-            activePlayers.add(randomPlayer);
+            taskPlayers.add(randomPlayer);
             validPlayers.remove(randomPlayer);
         }
-        return activePlayers;
+        return taskPlayers;
     }
 
-    List<Task> getValidTasks(List<String> tagIds) {
-        return taskRepo.findAll().stream()
+    List<Task> getValidTasks(Long level, List<String> tagIds) {
+        return taskRepo.findAllByLevel(level).stream()
                 .filter(task -> task.isValid(tagIds))
                 .toList();
     }
