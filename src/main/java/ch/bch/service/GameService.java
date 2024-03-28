@@ -40,7 +40,7 @@ public class GameService {
 
     Task chooseTask(List<Task> validTasks) {
         if (validTasks.isEmpty()) {
-            throw new IllegalStateException("There are not enough valid tasks to choose from. Create at least one.");
+            throw new IllegalStateException("There are not enough valid tasks in this level to choose from. Create at least one.");
         }
         return random(validTasks);
     }

@@ -91,7 +91,7 @@ class GameServiceTest {
         // EXECUTE & VERIFY
         assertThatThrownBy(() -> gameService.chooseTask(List.of()))
                 .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("There are not enough valid tasks to choose from. Create at least one.");
+                .hasMessageContaining("There are not enough valid tasks in this level to choose from. Create at least one.");
     }
 
     // ----------------------------------------------------------------------
@@ -138,6 +138,19 @@ class GameServiceTest {
         assertThatThrownBy(() -> gameService.choosePlayers(task1, new ArrayList<>(List.of(player1))))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("There are not enough valid players to choose from. Add at least 2");
+    }
+
+    @Test
+    void choosePlayers_noPlayer() {
+        // PREPARE
+        Task task1 = new Task("taskId1", 0L, 0L, "challange1", List.of("tagid1"));
+        Player player1 = new Player("playerId1", "Anna", "Purple", "They/Them", List.of("tagid1", "tagid2"));
+
+        // EXECUTE
+        ArrayList<Player> players = gameService.choosePlayers(task1, new ArrayList<>(List.of(player1)));
+
+        // ASSERT
+        assertThat(players.size()).isZero();
     }
 
     // ----------------------------------------------------------------------
