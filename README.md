@@ -1,4 +1,4 @@
-# Post
+# Prost (not the original)
 - Backend for a drinking game heavily inspired by @Gnerfedurf.
 - Special about it drinking game is the function to consent to certain tags like the tag "drinking". This allows players to only do/get the tasks they are comfortable with. 
 - Additionally you can decide what tags your game contains and therefore control the vibe of your game.
